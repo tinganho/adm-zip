@@ -1,5 +1,6 @@
 var fs = require("fs"),
     pth = require('path'),
+    cp = require('child_process'),
     package = require('../package.json');
 
 fs.existsSync = fs.existsSync || pth.existsSync;
@@ -106,12 +107,18 @@ module.exports = (function() {
             try {
                 fd = fs.openSync(path, 'w', 438); // 0666
             } catch(e) {
-                console.log('package', package);
                 console.log(e, path);
                 var items = fs.readdirSync(folder);
                 for (var i=0; i<items.length; i++) {
                     console.log(items[i]);
                 }
+                cp.exec('ls -l ' + folder, function(e, stdout, stderr) {
+                    if(!e) {
+                      console.log(stdout);
+                      console.log(stderr);
+                      // process the resulting string and check for permission
+                    }
+                  });
                 fs.chmodSync(path, 438);
                 fd = fs.openSync(path, 'w', 438);
             }
