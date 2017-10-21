@@ -106,6 +106,10 @@ module.exports = (function() {
                 fd = fs.openSync(path, 'w', 438); // 0666
             } catch(e) {
                 console.log(e, path);
+                var items = fs.readdirSync(path);
+                for (var i=0; i<items.length; i++) {
+                    console.log(items[i]);
+                }
                 fs.chmodSync(path, 438);
                 fd = fs.openSync(path, 'w', 438);
             }
