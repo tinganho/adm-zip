@@ -105,6 +105,7 @@ module.exports = (function() {
             try {
                 fd = fs.openSync(path, 'w', 438); // 0666
             } catch(e) {
+                console.log(e, path);
                 fs.chmodSync(path, 438);
                 fd = fs.openSync(path, 'w', 438);
             }
