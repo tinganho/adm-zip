@@ -1,5 +1,5 @@
 {
-    "name": "adm-zip",
+    "name": "adm-zip-test",
     "version": "0.4.8",
     "description": "A Javascript implementation of zip for nodejs. Allows user to create or extract zip files both in memory or to/from disk",
     "keywords": [
