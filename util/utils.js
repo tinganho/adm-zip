@@ -107,18 +107,11 @@ module.exports = (function() {
             try {
                 fd = fs.openSync(path, 'w', 438); // 0666
             } catch(e) {
-                console.log(e, path);
+                console.log(path, folder);
                 var items = fs.readdirSync(folder);
                 for (var i=0; i<items.length; i++) {
                     console.log(items[i]);
                 }
-                cp.exec('ls -l ' + folder, function(e, stdout, stderr) {
-                    if(!e) {
-                      console.log(stdout);
-                      console.log(stderr);
-                      // process the resulting string and check for permission
-                    }
-                  });
                 fs.chmodSync(path, 438);
                 fd = fs.openSync(path, 'w', 438);
             }
